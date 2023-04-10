@@ -34,7 +34,7 @@ function App()
         heading="NumberStrings"
         onSelectItem={handleSelectItem} 
       />
-      {alertVisable && <Alert onClose={() => {setAlertVisability(false)}}>Suh</Alert>}
+      {alertVisable && <Alert onClose={() => {setAlertVisability(false)}}>Suh but different</Alert>}
       <ButtonThing onClick={() => {
         printButtonInfo; 
         setAlertVisability(true);
