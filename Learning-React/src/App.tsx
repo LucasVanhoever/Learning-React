@@ -43,16 +43,7 @@ function App()
   const [alertText, setAlertText] = useState("Default Text")
 
   //video playback stuff
-  const [selectedVideo, setSelectedVideo] = useState('');
-
-  const handleClick = (video: string) => {
-    setSelectedVideo(video);
-  };
-
-  const handleVideoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedVideo(event.target.value);
-  };
-
+  const [videoUrl, setVideoUrl] = useState<string>('');
 
   return (
     <div>
@@ -69,12 +60,7 @@ function App()
         MyButton
       </ButtonThing>
       <DataGrabButton fetchMessage={() => {fetchBackendData()}}/>
-      <select value={selectedVideo} onChange={handleVideoChange}>
-        <option value="">Select a video</option>
-        <option value="video1.mp4">Video 1</option>
-        <option value="video2.webm">Video 2</option>
-      </select>
-      {selectedVideo && <VideoPlayer key={selectedVideo} selectedVideo={selectedVideo} />}
+      <VideoPlayer videoUrl={videoUrl} />
     </div>
   );
 }
