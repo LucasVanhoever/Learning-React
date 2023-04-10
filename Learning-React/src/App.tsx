@@ -4,7 +4,7 @@ import Alert from "./components/Alert";
 import ButtonThing from "./components/ButtonThing";
 import DataGrabButton from "./components/DataGrabButton";
 import axios from 'axios';
-
+import VideoPlayer from './components/VideoPlayer';
 
 function App()
 {
@@ -41,6 +41,19 @@ function App()
 
   const [alertVisable, setAlertVisability] = useState(false)
   const [alertText, setAlertText] = useState("Default Text")
+
+  //video playback stuff
+  const [selectedVideo, setSelectedVideo] = useState('');
+
+  const handleClick = (video: string) => {
+    setSelectedVideo(video);
+  };
+
+  const handleVideoChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedVideo(event.target.value);
+  };
+
+
   return (
     <div>
       <ListGroup 
@@ -56,6 +69,12 @@ function App()
         MyButton
       </ButtonThing>
       <DataGrabButton fetchMessage={() => {fetchBackendData()}}/>
+      <select value={selectedVideo} onChange={handleVideoChange}>
+        <option value="">Select a video</option>
+        <option value="video1.mp4">Video 1</option>
+        <option value="video2.webm">Video 2</option>
+      </select>
+      {selectedVideo && <VideoPlayer key={selectedVideo} selectedVideo={selectedVideo} />}
     </div>
   );
 }
